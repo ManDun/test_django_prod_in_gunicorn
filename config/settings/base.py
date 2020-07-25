@@ -3,7 +3,7 @@ Base settings to build other settings files upon.
 """
 from pathlib import Path
 
-import environ
+import environ, secret
 
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # test_django_prod_in_gunicorn/
@@ -42,7 +42,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///test_django_prod_in_gunicorn")
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite")
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
@@ -206,13 +206,13 @@ FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 # SECURITY
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
-SESSION_COOKIE_HTTPONLY = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
-CSRF_COOKIE_HTTPONLY = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
-SECURE_BROWSER_XSS_FILTER = True
-# https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
-X_FRAME_OPTIONS = "DENY"
+# SESSION_COOKIE_HTTPONLY = True
+# # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
+# CSRF_COOKIE_HTTPONLY = True
+# # https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
+# SECURE_BROWSER_XSS_FILTER = True
+# # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
+# X_FRAME_OPTIONS = "DENY"
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -265,7 +265,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "username"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = "test_django_prod_in_gunicorn.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html

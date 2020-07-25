@@ -282,4 +282,8 @@ test_django_prod_in_gunicorn/media/
 
 .pytest_cache/
 
+*-env/
+*.sqlite
+secret.py
+
 
